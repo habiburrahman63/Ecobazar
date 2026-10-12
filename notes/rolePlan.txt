@@ -1,0 +1,12 @@
+role plan:
+
+Customer → can access /profile, /my-orders
+Manager → same as customer, plus /admin/products and /admin/orders (typical "manager can handle inventory/orders but not staff" pattern)
+Admin → full access to everything, no restrictions
+
+Quick test
+
+Log out completely (or clear localStorage) → visiting /, /products works freely; /profile, /admin redirect to /login
+Dev-login as customer → /profile//my-orders work, /admin redirects to /
+Dev-login as manager → /admin, /admin/products, /admin/orders work; /admin/users redirects to /
+Dev-login as admin → everything accessible, no redirects anywhere

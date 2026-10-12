@@ -1,0 +1,5 @@
+Notes
+
+Search & category filtering happen client-side against the full product array (via ?search= / ?category= query params from the header) — appropriate since your backend has no query-param support on get-all-products yet. If you add filtering server-side later, swap the useMemo filter logic for a fetch call with query params.
+ProductCard's add-to-cart button and the wishlist heart buttons are visual-only stubs — wire them in whenever you connect cart endpoints.
+Test by visiting /products, /products?category=Electronics, and clicking into a couple of product cards to confirm /products/:id renders correctly.

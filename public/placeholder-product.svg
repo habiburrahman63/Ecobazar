@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" fill="#F8FAFC"/>
+  <rect x="120" y="120" width="160" height="160" rx="24" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="2"/>
+  <path d="M160 230L185 200C188 196 194 196 197 200L215 222L225 210C228 206 234 206 237 210L250 226C254 231 250 238 244 238H166C160 238 156 231 160 230Z" fill="#CBD5E1"/>
+  <circle cx="175" cy="175" r="14" fill="#CBD5E1"/>
+  <text x="200" y="270" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#94A3B8" text-anchor="middle">EcoBazar</text>
+</svg>
+

@@ -1,0 +1,7 @@
+ Architected navbar redesign with dynamic categories and responsive menu interactions
+ 
+ I'm updating the Navbar component to pull categories from the mock data and add a hover-based dropdown menu for subcategories on desktop, while implementing an expandable accordion-style list for mobile navigation.
+
+ Let's give the navbar a proper mega-menu treatment now that there are 12 categories with subcategories — a flat strip of 12 items would overflow badly. I'll make each category in the strip open a dropdown with its subcategories on hover (desktop) and an accordion on mobile.
+
+ 

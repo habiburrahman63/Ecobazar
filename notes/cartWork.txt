@@ -1,0 +1,2 @@
+TODO: 
+once cart endpoints are wired, these functions become API calls (POST /create-cart/:userId, POST /update-cart/:userId/:productId, DELETE /delete-cart-product/:userId/:productId, GET /cart/:userId) instead of local state — but the interface (addToCart, updateQuantity, removeFromCart) stays identical, so nothing calling useCart() needs to change.

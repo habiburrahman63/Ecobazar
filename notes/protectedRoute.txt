@@ -1,0 +1,58 @@
+
+
+we will use this later...
+----
+
+ProtectedRoute.jsx
+import { Navigate, useLocation } from "react-router";
+
+export default function ProtectedRoute({ children, requireAdmin = false }) {
+    const location = useLocation();
+    const token = localStorage.getItem("token");
+    // TODO: once AuthContext exists, read role from there instead of a raw localStorage flag
+    const role = localStorage.getItem("role");
+
+    if (!token) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+
+    if (requireAdmin && role !== "admin") {
+        return <Navigate to="/" replace />;
+    }
+
+    return children;
+};
+
+
+--------
+
+Apply it in AppRoutes.jsx — wrap the account and admin layouts:
+
+import ProtectedRoute from "../components/common/ProtectedRoute";
+
+// Account section:
+{
+  path: "",
+  element: (
+    <ProtectedRoute>
+      <AccountLayout />
+    </ProtectedRoute>
+  ),
+  children: [
+    { path: "profile", element: <Profile /> },
+    { path: "my-orders", element: <MyOrders /> },
+  ],
+},
+
+// Admin section (top-level):
+{
+  path: "/admin",
+  element: (
+    <ProtectedRoute requireAdmin>
+      <AdminLayout />
+    </ProtectedRoute>
+  ),
+  children: [
+    // ...unchanged
+  ],
+},

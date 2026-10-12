@@ -1,0 +1,15 @@
+Why it happens: When you click a link inside the app, react-router intercepts navigation in JavaScript, so /profile "just works." But when you hit /profile directly (typing the URL, refreshing, or opening a shared link), the browser asks Vercel's server for a file literally at that path. Vercel's static host looks for /profile/index.html on disk, finds nothing, and returns a 404 — because your React app (and its router) never even gets a chance to load.
+
+Fix: tell Vercel to serve index.html for every route, and let react-router handle the routing client-side from there.
+
+A couple of related things worth flagging while we're here:
+
+This is a permanent requirement for any SPA (single-page app) deployed to a static host — not just Vercel. 
+
+If you ever deploy to Netlify, GitHub Pages, or a plain Nginx server, you'll need an equivalent rewrite rule each time 
+(Netlify uses a _redirects file, 
+Nginx uses try_files).
+
+/admin and /profile will still redirect to /login even after this fix, because of the ProtectedRoute wrapper we added in Step 10 — that's separate from the 404 issue and is expected until real auth is wired (no token in localStorage = redirect). Don't mistake that redirect for the rewrite fix not working.
+
+Push the vercel.json and try the direct link again — let me know if it resolves cleanly.

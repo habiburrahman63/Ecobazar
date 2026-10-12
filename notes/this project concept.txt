@@ -1,0 +1,46 @@
+eCommerce project 
+
+basic eCommerce logics - what we have done here...
+
+--- * frontend works starts * -----
+
+
+
+--- * frontend works ends * -----
+
+
+
+
+--- *** backend works starts *** -----
+
+
+
+
+
+--- *** backend works ends *** -----
+
+
+
+--- --- ****** fullStack works starts ****** --- -----
+1. registration korse. form er sob input same hote hobe... 
+2. registration successful hole, login korbo... login kore Home page e jabo...
+3. login -> homepage -> user name show korbe
+4. user name CLICK -> user PROFILE asbe
+5. user PROFILE -> LOGOUT -> HOME jabe 
+
+*key sending from backend should be same to frontend... like ID keys *
+-- i faced problem in getting data in profile because i wrote userID and mentor wrote _id ---
+
+?? error ??
+role likha thakle thik thake 
+
+
+
+
+
+--- --- ****** fullStack works ends ****** --- -----
+
+
+
+
+

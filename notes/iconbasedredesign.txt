@@ -1,0 +1,17 @@
+    *Icon-based categories are cleaner and load faster than image grids, and adding subcategories gives customers a faster path to what they want. Let's rebuild this section as cards — icon, category name, and a few subcategory links each.*
+
+I'm redesigning the "Shop by Category" section to use icons instead of images, expanding the category count and adding subcategories displayed as small tags or expandable items beneath each category. For a homepage, I'll go with simple category cards featuring an icon, the category name, and a few subcategory links in smaller text below. Now I need to select appropriate icons for each category.
+
+I'll use lucide-react icons: Smartphone for Electronics, Shirt for Fashion, Home for Home & Living, BookOpen for Books, Sparkles for Beauty, Dumbbell for Sports, ShoppingBasket for Groceries, Gamepad2 for Toys, Car for Automotive, HeartPulse for Health & Wellness, Gem for Jewelry, and PawPrint for Pet Supplies. I'm planning around 10-12 categories total, each with 3-4 subcategories.
+
+Building the component with a data structure that maps categories to their icons and subcategories, then rendering a grid of cards with colored icon circles, category names, and subcategory links that route to the products page with category and subcategory filters (though I'll note that the ProductListing component doesn't support subcategory filtering yet, so that's a TODO).
+
+What changed and why
+
+Icons instead of stock photos — faster load, no broken/mismatched Unsplash images, and looks more like a real ecommerce mega-menu pattern
+12 categories instead of 6 — more realistic breadth for a general marketplace
+Subcategories per card — gives customers a faster, more specific entry point than a single flat category click
+Hover state — icon background flips to solid amber on hover, card border highlights, reinforces interactivity
+Grid scales: 2 columns on mobile → 3 on tablet → 4 on desktop, so 12 categories don't feel like an endless scrole
+
+

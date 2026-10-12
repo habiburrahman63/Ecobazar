@@ -1,0 +1,172 @@
+src/
+├── api/
+│   ├── axiosInstance.js
+│   ├── authApi.js
+│   ├── productApi.js
+│   ├── cartApi.js
+│   ├── orderApi.js
+│   └── userApi.js
+│
+├── assets/
+│
+├── components/
+│   ├── common/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Button.jsx
+│   │   ├── InputField.jsx
+│   │   ├── Loader.jsx
+│   │   ├── Modal.jsx
+│   │   ├── Pagination.jsx
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── product/
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductGrid.jsx
+│   │   ├── ProductImageGallery.jsx
+│   │   ├── ProductForm.jsx        // shared by Add/Edit
+│   │   └── ImageUploader.jsx
+│   │
+│   ├── cart/
+│   │   ├── CartItem.jsx
+│   │   ├── CartSummary.jsx
+│   │   └── QuantitySelector.jsx
+│   │
+│   ├── checkout/
+│   │   ├── AddressForm.jsx
+│   │   └── OrderSummary.jsx
+│   │
+│   ├── auth/
+│   │   ├── LoginForm.jsx
+│   │   ├── RegisterForm.jsx
+│   │   ├── ForgotPasswordForm.jsx
+│   │   └── ResetPasswordForm.jsx
+│   │
+│   └── admin/
+│       ├── AdminSidebar.jsx
+│       ├── AdminNavbar.jsx
+│       ├── ProductTable.jsx
+│       ├── UserTable.jsx
+│       └── OrderTable.jsx
+│
+├── layouts/
+│   ├── MainLayout.jsx       // Navbar + Footer wrapper
+│   └── AdminLayout.jsx      // Sidebar wrapper
+│   └── AuthLayout.jsx
+├── pages/
+│   ├── customer/
+│   │   ├── Home.jsx
+│   │   ├── ProductListing.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Checkout.jsx
+│   │   ├── OrderSuccess.jsx
+│   │   ├── OrderFailed.jsx
+│   │   ├── MyOrders.jsx
+│   │   └── Profile.jsx
+│   │
+│   ├── auth/
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── ForgotPassword.jsx
+│   │   ├── ResetPassword.jsx
+│   │   ├── VerifyEmail.jsx
+│   │   └── ResendVerification.jsx
+│   │
+│   ├── admin/
+│   │   ├── Dashboard.jsx
+│   │   ├── ManageProducts.jsx
+│   │   ├── AddProduct.jsx
+│   │   ├── EditProduct.jsx
+│   │   ├── ManageUsers.jsx
+│   │   └── ManageOrders.jsx
+│   │
+│   └── NotFound.jsx
+│
+├── context/
+│   ├── AuthContext.jsx
+│   └── CartContext.jsx
+│
+├── hooks/
+│   ├── useAuth.js
+│   ├── useCart.js
+│   └── useFetch.js
+│
+├── routes/
+│   └── AppRoutes.jsx
+│
+├── utils/
+│   ├── constants.js
+│   └── validators.js
+│
+├── App.jsx
+└── main.jsx
+
+
+1. Page List
+
+Public / Customer-facing
+------------------------
+Page                   Route                       Notes
+
+Home                   /Featured/latest            products grid
+
+Product Listing         /products                  Uses get-all-products,
+                                                   needs client-side search/filter/sort since backend has no query params shown
+
+Product Details         /products/:id              Uses get-single-product/:id
+
+Cart                    /cart                      Uses cart/:userId increment/     
+                                                   decrement, delete
+
+Checkout                /checkout                   Address + order summary 
+                                                    → triggers /payment
+
+Order Success           /order-success,             Post-payment redirect pages
+ / Failure               /order-failed
+               
+
+Login                   /login
+
+Register                /register
+
+Forgot Password         /forgot-password
+
+Reset Password          /reset-password/:token
+
+Verify Email            /verify-email/:token
+
+Resend Verification     /resend-verification       Can be a small modal/page
+
+User Profile            /profile                    Uses getsingleuser/:id,
+                                                    updateuser/:id
+
+My Orders               /my-orders                  ⚠️ needs a working get-order 
+                                                      with user filter 
+
+404                     *
+
+
+
+Admin
+------
+Page                    Route                       Notes
+
+Admin Dashboard         /admin                      Summary cards (optional, 
+                                                    static for now)
+
+Manage Products         /admin/products             List + delete, links to add/edit
+
+Add Product             /admin/products/create      Uses create-product, 
+                                                    multi-image upload
+
+Edit Product            /admin/products/edit/:id    Uses update-product/:id, 
+                                                    update-main-image/:id
+
+
+Manage Users            /admin/users                Uses getallusers, delete, view
+
+User Details (Admin)    /admin/users/:id            Uses getsingleuser/:id
+
+Manage Orders           /admin/orders               ⚠️ needs an "all orders" 
+                                                    endpoint later
