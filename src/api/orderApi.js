@@ -53,7 +53,13 @@ export function normalizeOrder(order) {
 }
 
 export async function placeOrderApi(orderData) {
-  const { data } = await axiosInstance.post("/payment", orderData);
+  const currentOrigin =
+    typeof window !== "undefined" ? window.location.origin : "";
+  const payload = {
+    ...orderData,
+    frontendUrl: currentOrigin,
+  };
+  const { data } = await axiosInstance.post("/payment", payload);
   if (!data.success) {
     throw new Error(data.message || "Failed to process order placement");
   }

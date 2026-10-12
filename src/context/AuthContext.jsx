@@ -41,13 +41,30 @@ export function AuthProvider({ children }) {
             setUser(res.user);
             localStorage.setItem(USER_KEY, JSON.stringify(res.user));
           }
-        } catch {
-          // Token expired or invalid
-          if (mounted) {
+        } catch (err) {
+          // Only clear session if the server explicitly reports 401 Unauthorized (token is definitely expired or invalid)
+          const status = err.response?.status;
+          const msg = (err.response?.data?.message || "").toLowerCase();
+          const isDefinitiveUnauthorized =
+            status === 401 &&
+            (msg.includes("token") ||
+              msg.includes("expired") ||
+              msg.includes("invalid") ||
+              msg.includes("denied") ||
+              msg.includes("unauthorized") ||
+              msg.includes("no longer exists"));
+
+          if (mounted && isDefinitiveUnauthorized) {
+            console.warn("Session expired. Logging out.");
             localStorage.removeItem(TOKEN_KEY);
             localStorage.removeItem(USER_KEY);
             setUser(null);
             setToken(null);
+          } else {
+            console.warn(
+              "Session verification notice (retaining active local session):",
+              err.message
+            );
           }
         }
       }
